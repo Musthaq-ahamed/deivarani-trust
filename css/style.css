@@ -271,6 +271,111 @@ h1, h2, h3, h4, h5,
   .offcanvas-menu .site-wrap:before {
     opacity: 1;
     visibility: visible; }
+/* ===================================
+ * Custom Service Carousel Styles
+ * =================================== */
+
+/* 1. The main container */
+.service-container {
+  position: relative; /* Needed to position the buttons */
+  width: 90%; /* Not full-width, gives some margin */
+  margin: 0 auto; /* Center the container */
+  overflow: hidden; /* This is the magic! Hides slides outside the container */
+  border-radius: 8px; /* Optional: adds rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: adds depth */
+}
+
+/* 2. The sliding track */
+.service-track {
+  display: flex;
+  /* Eases the slide animation */
+  transition: transform 0.5s ease-in-out;
+}
+
+/* 3. Individual slides */
+.service-slide {
+  /* Mobile First: Each slide takes 100% width */
+  min-width: 100%;
+  box-sizing: border-box; /* Ensures padding/border are included in width */
+  padding: 0 5px; /* Adds a small gutter between images */
+}
+
+.service-slide img {
+  width: 100%; /* Make image fill the slide */
+  
+  /* --- Additions for 5:4 Ratio --- */
+  aspect-ratio: 5 / 4;  /* Sets the 5:4 ratio */
+  object-fit: cover;    /* This prevents the image from stretching/squishing.
+                             It fills the box and crops any extra parts. */
+  /* ----------------------------- */
+
+  display: block;
+  border-radius: 5px; /* Match container corners */
+}
+
+/* 4. The Prev/Next buttons */
+.service-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Centers buttons vertically */
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%; /* Circular buttons */
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.service-btn:hover {
+  background-color: #ff7f00; /* Use your site's primary color */
+}
+
+.prev-service {
+  left: 10px; /* Position on the left */
+}
+
+.next-service {
+  right: 10px; /* Position on the right */
+}
+
+/* 5. Responsive Views (Desktop & Tablet) */
+
+/* For tablets (e.g., 768px) - Show 3 slides */
+@media (min-width: 768px) {
+  .service-slide {
+    min-width: 33.333%; /* 100% / 3 = 33.333% */
+  }
+  .service-container {
+    width: 95%; /* Can be wider on tablets */
+  }
+}
+/* ===================================
+ * Custom Service Carousel Styles
+ * =================================== */
+
+/* ... (all your existing .service-container, .service-track, etc. styles) ... */
+
+/* * NEW CLASS FOR INFINITE LOOP:
+ * This disables the transition animation, allowing for an instant "jump"
+ * back to the beginning to create the seamless loop.
+*/
+.service-track.no-transition {
+  transition: none !important;
+}
+
+/* For desktops (e.g., 1024px) - Show 4 slides */
+@media (min-width: 1024px) {
+  .service-slide {
+    min-width: 25%; /* 100% / 4 = 25% */
+  }
+}
 
 .line-height-1 {
   line-height: 1 !important; }
